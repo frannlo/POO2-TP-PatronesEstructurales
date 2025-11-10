@@ -1,43 +1,22 @@
-1. Problema detectado
+Justificación de la elección de patrones de diseño
+1. Patrón Facade
 
-El cliente (la interfaz de usuario) debía realizar múltiples pasos manuales para generar un reporte fiscal:
+Se eligió el patrón Facade para simplificar el proceso de generación de reportes fiscales, el cual originalmente requería que el cliente interactúe de forma directa con múltiples clases y realice los pasos en un orden específico (conexión a base de datos, obtención de CUIT, autenticación con AFIP, obtención de datos fiscales, procesamiento de impuestos y generación del PDF).
 
-Conectarse a la base de datos.
+La intención del patrón es “proveer una interfaz unificada para un conjunto de interfaces en un subsistema”, reduciendo la complejidad visible hacia el cliente.
+En este caso, la clase GeneradorReporteFacade expone un único método generarReporte(idCliente), el cual se encarga internamente de coordinar todos los componentes necesarios:
 
-Obtener el CUIT del cliente.
+ConectorDB (gestiona la conexión)
 
-Autenticarse ante el servicio web de AFIP.
+LectorDeDatos (obtiene el CUIT)
 
-Solicitar los datos fiscales.
+ServicioWebAFIP (recupera los datos fiscales)
 
-Calcular los montos de impuestos.
+ProcesadorDeImpuestos (calcula los montos resultantes)
 
-Generar el archivo PDF final.
+RenderizadorPDF (genera el archivo de salida)
 
-Este proceso requiere instanciar y coordinar múltiples clases, en un orden específico.
-Como consecuencia:
+De esta manera, el cliente solo necesita interactuar con la fachada, manteniéndose desacoplado de los detalles internos del proceso.
+Además, posibles cambios en la lógica (por ejemplo, cambiar el servicio web, modificar cálculos, o generar otro tipo de reporte) no afectan al cliente, ya que se encuentran encapsulados detrás del Facade, favoreciendo los principios de Abierto/Cerrado y Responsabilidad Única.
 
-El cliente queda fuertemente acoplado a los subsistemas internos.
-
-Se duplica código cuando otros módulos quieren generar reportes.
-
-La mantención y el cambio se vuelven complejos.
-
-2. Patrón aplicado: Facade
-
-Se eligió el patrón Facade para encapsular la complejidad del proceso de generación del reporte y exponer una interfaz simple al cliente.
-
-Intención del patrón Facade:
-“Proveer una interfaz simplificada y unificada para un conjunto de subsistemas complejos.”
-
-La clase GeneradorReporteFacade actúa como fachada centralizando:
-
-La conexión con la BD (ConectorDB)
-
-La obtención del CUIT (LectorDeDatos)
-
-La comunicación con AFIP (ServicioWebAFIP)
-
-El cálculo de impuestos (ProcesadorDeImpuestos)
-
-La generación de PDF (RenderizadorPDF)
+En conclusión, la aplicación del patrón Facade permite ocultar la complejidad del subsistema de generación de reportes, reducir el acoplamiento entre la interfaz de usuario y los componentes internos, y ofrecer una API clara, coherente y fácil de usar.
