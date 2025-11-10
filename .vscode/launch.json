@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "AppDemo",
+            "request": "launch",
+            "mainClass": "AppDemo",
+            "projectName": "POO2-TP-PatronesEstructurales_b2740966"
+        },
+        {
+            "name": "Launch AppDemo",
+            "type": "java",
+            "request": "launch",
+            "mainClass": "ar.universidad.contabilidad.AppDemo",
+            "projectName": "POO2-TP-PatronesEstructurales",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "args": [],
+            "preLaunchTask": "Compile escenario-2"
+        }
+    ]
+}

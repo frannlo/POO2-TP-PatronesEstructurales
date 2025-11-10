@@ -1,0 +1,17 @@
+{
+    "java.jdt.ls.java.home": "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.9.10-hotspot",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-21",
+            "path": "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.9.10-hotspot",
+            "default": true
+        }
+    ],
+    "java.project.sourcePaths": [
+        "escenario-2/src/main/java"
+    ],
+    "java.project.outputPath": "escenario-2/bin",
+    "java.project.referencedLibraries": [
+        "escenario-2/lib/**/*.jar"
+    ]
+}
