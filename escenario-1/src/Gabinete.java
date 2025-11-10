@@ -11,6 +11,10 @@ public class Gabinete implements ComponentePC{
         this.nombre = nombre;
         this.precioBase = precioBase; 
     }
+    
+    public void agregarComponente(ComponentePC componente){
+        this.componentes.add(componente);
+    }
 
     @Override
     public String getNombre(){ return this.nombre;}

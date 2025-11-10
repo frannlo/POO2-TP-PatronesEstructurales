@@ -1,14 +1,17 @@
-public class GarantiaExtendida extends Decorador{
-
-    public GarantiaExtendida(ComponentePC componente, double costoAdicional){
+public class GarantiaExtendida extends Decorador {
+    
+    public GarantiaExtendida(ComponentePC componente) {
         super(componente);
     }
-
-    public double getPrecio(){
-        return super.getPrecio() * 1.10;
+    
+    @Override
+    public double getPrecio() {
+        return super.getPrecio() * 1.10; 
     }
-
-    public String nombre(){
-        return super.getNombre() + " (con garantía extendida)";
+    
+    @Override
+    public String getNombre() {
+        return super.getNombre() + " (con Garantía Extendida)";
     }
 }
+
