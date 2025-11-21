@@ -1,0 +1,46 @@
+%% Diagrama de clases - Escenario 3
+classDiagram
+    class IServicioEnvio {
+        +calcularCosto(String) float
+        +obtenerTiempoEstimado(String) String
+        +despacharPedido(String, String, String) String
+    }
+
+    class LogisticaVelozAdapter {
+        -ApiLogisticaVeloz api
+        +calcularCosto(String) float
+        +obtenerTiempoEstimado(String) String
+        +despacharPedido(String, String, String) String
+        -cotizar(String) Cotizacion
+        -parsearCodigoPostal(String) int
+    }
+
+    class ApiLogisticaVeloz {
+        +cotizarEnvio(int) Cotizacion
+        +enviarPaquete(DatosEnvio) String
+    }
+
+    class Cotizacion {
+        -costo float
+        -dias int
+        +getCosto() float
+        +getDias() int
+    }
+
+    class DatosEnvio {
+        -direccion String
+        -cpDestino int
+        -idPedido String
+        +getDireccion() String
+        +getCpDestino() int
+        +getIdPedido() String
+        +setDireccion(String) void
+        +setCpDestino(int) void
+        +setIdPedido(String) void
+    }
+
+    IServicioEnvio <|.. LogisticaVelozAdapter
+    LogisticaVelozAdapter --> ApiLogisticaVeloz
+    ApiLogisticaVeloz --> Cotizacion
+    ApiLogisticaVeloz --> DatosEnvio
+
